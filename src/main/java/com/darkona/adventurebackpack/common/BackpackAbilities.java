@@ -142,7 +142,7 @@ public class BackpackAbilities
             "Bat", "Squid", "Pigman", "Cactus", "Cow", "Pig", "Dragon", "Slime", "Chicken", "Wolf", "Ocelot", "Creeper", "Rainbow", "Melon", "Sunflower","Mooshroom"};
 
     private static String[] validRemovalBackpacks = {
-            "Bat", "Squid", "Dragon", "Rainbow"
+            "Bat", "Squid", "Dragon", "Rainbow", "Pigman", "Slime"
     };
     /**
      * These are the colorNames of the backpacks that have abilities while being blocks. Note that not all the
@@ -206,9 +206,9 @@ public class BackpackAbilities
         if (player.isPotionActive(Potion.nightVision.id)) {
             nightVision = player.getActivePotionEffect(Potion.nightVision);
         }
-        if (nightVision == null || nightVision.getDuration() < 40 && nightVision.getAmplifier() != -4)
+        if (nightVision == null || nightVision.getDuration() < 40 && nightVision.getAmplifier() != 0)
         {
-            player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 5000, -4));
+            player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 5000, 0));
         }
     }
 
@@ -216,7 +216,7 @@ public class BackpackAbilities
     {
         if (player.isInWater())
         {
-            player.addPotionEffect(new PotionEffect(Potion.waterBreathing.getId(), 1, -5));
+            player.addPotionEffect(new PotionEffect(Potion.waterBreathing.getId(), 40, 0));
             itemBat(player, world, backpack);
         }else{
             backpackRemovals.itemSquid(player,world, backpack);
@@ -234,9 +234,9 @@ public class BackpackAbilities
         if (player.isPotionActive(Potion.fireResistance.id)) {
             potion = player.getActivePotionEffect(Potion.fireResistance);
         }
-        if (potion == null || potion.getDuration() < 5 && potion.getAmplifier() != -5)
+        if (potion == null || potion.getDuration() < 5 && potion.getAmplifier() != 0)
         {
-            player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 5000, -5));
+            player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 5000, 0));
         }
     }
 
@@ -318,7 +318,7 @@ public class BackpackAbilities
         // 4 is New Moon, 5 is Waxing Crescent, 6 is First Quarter and 7 is Waxing Gibbous
         if (world.getMoonPhase() == 0 && !world.isDaytime())
         {
-            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 1, 1));
+            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 5000, 1));
         }
         if (player.onGround)
         {
@@ -418,16 +418,16 @@ public class BackpackAbilities
         if (player.isPotionActive(Potion.regeneration.id)) {
             potion = player.getActivePotionEffect(Potion.regeneration);
         }
-        if (potion == null || potion.getDuration() < 40 && potion.getAmplifier() != -5)
+        if (potion == null || potion.getDuration() < 40 && potion.getAmplifier() != 0)
         {
-            player.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 5000, -5));
+            player.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 5000, 0));
         }
         potion = null;
         if (player.isPotionActive(Potion.damageBoost.id)) {
             potion = player.getActivePotionEffect(Potion.damageBoost);
         }
-        if (potion == null || potion.getDuration() < 40 && potion.getAmplifier() != -5) {
-            player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 5000, -5));
+        if (potion == null || potion.getDuration() < 40 && potion.getAmplifier() != 1) {
+            player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 5000, 1));
         }
     }
 
@@ -740,13 +740,6 @@ public class BackpackAbilities
                     ModNetwork.sendToNearby(new EntityParticlePacket.Message(EntityParticlePacket.NYAN_PARTICLE, player), player);
                 }
             }
-        }
-        PotionEffect potion = null;
-        if (player.isPotionActive(Potion.moveSpeed.id)) {
-            potion = player.getActivePotionEffect(Potion.moveSpeed);
-        }
-        if (potion == null || potion.getDuration() < 40 && potion.getAmplifier() != -5) {
-            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 5000, -5));
         }
         inv.setLastTime(noteTime);
         inv.markDirty();
