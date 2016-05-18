@@ -292,8 +292,9 @@ public class PlayerEventHandler
             {
                 if (event.side.isServer())
                 {
-                    EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
-                    BackpackProperty.syncToNear(event.player);
+                    // major performance issue, not needed anyways.
+                    //EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
+                    //BackpackProperty.syncToNear(event.player);
 //                    if (Utils.notNullAndInstanceOf(event.player.openContainer, IWearableContainer.class))
 //                    {
 //                        //playerMP.sendContainerAndContentsToPlayer(playerMP.openContainer, playerMP.openContainer.getInventory());
