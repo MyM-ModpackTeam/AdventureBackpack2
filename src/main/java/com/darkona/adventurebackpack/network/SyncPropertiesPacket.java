@@ -27,7 +27,13 @@ public class SyncPropertiesPacket implements IMessageHandler<SyncPropertiesPacke
 
         if (ctx.side.isClient() && message.properties != null)
         {
-            AdventureBackpack.proxy.synchronizePlayer(message.ID, message.properties);
+            // todo resolved properly and remove hotfix
+            // hotfix respond packet being received too early causing the connection to be terminated due to the NPE being thrown. If fired too early it ignores the packet and requests a new one
+            if (Minecraft.getMinecraft().theWorld == null) {
+                ModNetwork.net.sentToServer(new SyncPropertiesPacket.Message());
+            } else {
+                AdventureBackpack.proxy.synchronizePlayer(message.ID, message.properties);
+            }
         }
         if (ctx.side.isServer())
         {
