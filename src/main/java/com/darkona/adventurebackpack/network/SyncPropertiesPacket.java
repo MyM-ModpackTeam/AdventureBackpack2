@@ -1,12 +1,14 @@
 package com.darkona.adventurebackpack.network;
 
 import com.darkona.adventurebackpack.AdventureBackpack;
+import com.darkona.adventurebackpack.init.ModNetwork;
 import com.darkona.adventurebackpack.playerProperties.BackpackProperty;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
@@ -30,7 +32,7 @@ public class SyncPropertiesPacket implements IMessageHandler<SyncPropertiesPacke
             // todo resolved properly and remove hotfix
             // hotfix respond packet being received too early causing the connection to be terminated due to the NPE being thrown. If fired too early it ignores the packet and requests a new one
             if (Minecraft.getMinecraft().theWorld == null) {
-                ModNetwork.net.sentToServer(new SyncPropertiesPacket.Message());
+                ModNetwork.net.sendToServer(new SyncPropertiesPacket.Message());
             } else {
                 AdventureBackpack.proxy.synchronizePlayer(message.ID, message.properties);
             }
