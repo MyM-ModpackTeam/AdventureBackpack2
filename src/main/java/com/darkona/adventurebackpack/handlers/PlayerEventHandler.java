@@ -185,7 +185,7 @@ public class PlayerEventHandler
                 if (props.hasWearable())
                 {
                     //We want to keep the wearables on the player if KeepInventory is active.
-                    if (!player.getEntityWorld().getGameRules().getGameRuleBooleanValue("keepInventory"))
+                    if (!ConfigHandler.KEEP_BACKPACK && !player.getEntityWorld().getGameRules().getGameRuleBooleanValue("keepInventory"))
                     {
                         //So if it isn't, we drop it like it's hot, drop it like it's hot, drop it like it's hot.
                         ((IBackWearableItem) props.getWearable().getItem()).onPlayerDeath(player.worldObj, player, props.getWearable());

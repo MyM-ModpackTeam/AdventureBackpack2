@@ -42,6 +42,8 @@ public class ConfigHandler
     public static boolean SADDLE_RECIPE = true;
     public static boolean FIX_LEAD = true;
 
+    public static boolean KEEP_BACKPACK = false;
+
 
     public static void init(File configFile)
     {
@@ -68,6 +70,9 @@ public class ConfigHandler
         BACKPACK_DEATH_PLACE = config.getBoolean("BackpackDeathPlace", config.CATEGORY_GENERAL,true,"Place backpacks as a block when you die?");
         //RECIPES
         SADDLE_RECIPE = config.getBoolean("SaddleRecipe", config.CATEGORY_GENERAL,true, "Add recipe for saddle?");
+
+        KEEP_BACKPACK = config.getBoolean("KeepBackpack", config.CATEGORY_GENERAL, false, "Keep backpack on death?");
+
         if (config.hasChanged())
         {
             config.save();
