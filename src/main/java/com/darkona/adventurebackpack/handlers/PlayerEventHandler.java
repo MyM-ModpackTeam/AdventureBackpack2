@@ -6,7 +6,9 @@ import com.darkona.adventurebackpack.entity.EntityFriendlySpider;
 import com.darkona.adventurebackpack.entity.ai.EntityAIHorseFollowOwner;
 import com.darkona.adventurebackpack.init.ModBlocks;
 import com.darkona.adventurebackpack.init.ModItems;
+import com.darkona.adventurebackpack.init.ModNetwork;
 import com.darkona.adventurebackpack.item.IBackWearableItem;
+import com.darkona.adventurebackpack.network.SyncPropertiesPacket;
 import com.darkona.adventurebackpack.playerProperties.BackpackProperty;
 import com.darkona.adventurebackpack.proxy.ServerProxy;
 import com.darkona.adventurebackpack.reference.BackpackNames;
@@ -205,6 +207,11 @@ public class PlayerEventHandler
             }
         }
         event.setResult(Event.Result.ALLOW);
+    }
+
+    @SubscribeEvent
+    public void playerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        ModNetwork.net.sendToServer(new SyncPropertiesPacket.Message());
     }
 
     @SubscribeEvent
