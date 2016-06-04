@@ -30,7 +30,7 @@ public class WaterEffect extends FluidEffect
         if (entity instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) entity;
-            BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(player.serverPosX, player.serverPosZ);
+            BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(player.chunkCoordX, player.chunkCoordZ);
 
             //If it's hot
             if (
