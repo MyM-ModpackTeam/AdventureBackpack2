@@ -211,7 +211,7 @@ public class PlayerEventHandler
 
     @SubscribeEvent
     public void playerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        ModNetwork.net.sendToServer(new SyncPropertiesPacket.Message());
+        BackpackProperty.sync(event.player);
     }
 
     @SubscribeEvent
